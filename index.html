@@ -1,58 +1,468 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Leave a tip or support Connective Gatherings LLC with a one-time contribution or monthly support.">
-<title>Support Connective Gatherings | Tips & Monthly Support</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Roboto:wght@400;500;700&display=swap');
-:root { --gold:#ffda68; --gold-heading:#ffd34e; --black:#151515; --top-black:#050505; --body-text:#b7bcc5; --hero-text:#353535; }
-* { box-sizing:border-box; }
-html,body { margin:0; min-height:100%; }
-body { min-height:100vh; display:flex; flex-direction:column; font-family:Roboto,Arial,sans-serif; background:var(--black); color:var(--body-text); font-size:17px; line-height:1.6; }
-.top-bar { height:24px; flex:none; background:var(--top-black); }
-.hero { background:var(--gold); color:var(--hero-text); }
-.hero-inner,.content-inner { width:min(100%,940px); margin:0 auto; padding-left:28px; padding-right:28px; }
-.hero-inner { padding-top:54px; padding-bottom:56px; }
-h1 { margin:0 0 18px; font:700 clamp(32px,4vw,44px)/1.15 Oswald,Arial,sans-serif; text-transform:uppercase; color:#050505; }
-.hero p { max-width:690px; margin:0; font-size:18px; }
-main { flex:1; width:100%; }
-.content-inner { padding-top:52px; padding-bottom:62px; }
-section { margin:0 0 48px; }
-h2 { color:var(--gold-heading); font-size:24px; font-weight:500; line-height:1.3; margin:0 0 15px; }
-p { margin:0 0 22px; }
-.one-time { text-align:center; padding:34px; border:1px solid #4a4430; background:#202020; }
-.one-time p:not(.note) { max-width:710px; margin-left:auto; margin-right:auto; }
-.button { display:inline-flex; justify-content:center; align-items:center; min-height:50px; padding:13px 24px; background:var(--gold); color:#111; text-decoration:none; font-size:16px; font-weight:700; text-align:center; transition:background .15s; }
-.button:hover,.button:focus-visible { background:var(--gold-heading); }
-.button:focus-visible { outline:3px solid #fff; outline-offset:3px; }
-.one-time .button { min-width:240px; }
-.note { color:#b7bcc5; font-size:14px; margin:16px 0 0; }
-.monthly { text-align:center; border-top:1px solid #393939; padding-top:40px; }
-.monthly > p { max-width:720px; margin-left:auto; margin-right:auto; }
-.tiers { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:28px; }
-.tier { text-align:center; align-items:center; display:flex; flex-direction:column; gap:16px; min-width:0; padding:26px 22px; border:1px solid #484848; background:#1d1d1d; }
-.tier h3 { margin:0; font-size:18px; line-height:1.35; font-weight:500; color:#fff; }
-.price { font:700 38px/1.15 Oswald,Arial,sans-serif; color:var(--gold); }
-.price span { font:400 14px Roboto,Arial,sans-serif; color:var(--body-text); white-space:nowrap; }
-.tier .button { width:100%; margin-top:auto; font-size:15px; }
-.legal { padding-top:26px; border-top:1px solid #393939; font-size:13px; color:#aeb3bc; }
-footer { flex:none; padding:24px 20px; background:var(--top-black); color:#999; font-size:13px; text-align:center; }
-@media(max-width:760px) { .tiers { grid-template-columns:1fr; } .tier { gap:12px; } .hero-inner,.content-inner { padding-left:22px; padding-right:22px; } }
-@media(max-width:600px) { body { font-size:16px; } .hero-inner { padding-top:38px; padding-bottom:42px; } .hero p { font-size:16px; } .content-inner { padding-top:32px; padding-bottom:44px; } .one-time { padding:24px 20px; } h2 { font-size:22px; } .one-time .button { display:flex; width:100%; min-width:0; } .tier { padding:22px; } }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Support Connective Gatherings LLC through optional one-time contributions or monthly community support.">
+
+    <title>Support Connective Gatherings</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Roboto:wght@400;500;700&display=swap');
+
+        :root {
+            --gold: #ffda68;
+            --gold-heading: #ffd34e;
+            --black: #151515;
+            --top-black: #050505;
+            --body-text: #b7bcc5;
+            --hero-text: #353535;
+            --panel: #202020;
+            --border: #424242;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: "Roboto", Arial, sans-serif;
+            background: var(--black);
+            color: var(--body-text);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* TOP BAR */
+
+        .top-bar {
+            height: 32px;
+            flex-shrink: 0;
+            background: var(--top-black);
+        }
+
+        /* HERO */
+
+        .hero {
+            background: var(--gold);
+            color: var(--hero-text);
+        }
+
+        .hero-inner {
+            max-width: 940px;
+            margin: 0 auto;
+            padding: 55px 24px 60px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0 0 22px;
+            font-family: "Oswald", Arial, sans-serif;
+            font-size: 42px;
+            line-height: 1.2;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--top-black);
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: 0 auto;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        /* MAIN CONTENT */
+
+        main {
+            flex: 1;
+            width: 100%;
+        }
+
+        .content-inner {
+            max-width: 940px;
+            margin: 0 auto;
+            padding: 50px 24px 65px;
+        }
+
+        h2 {
+            margin: 0 0 18px;
+            color: var(--gold-heading);
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        p {
+            margin: 0 0 22px;
+        }
+
+        /* BUTTONS */
+
+        .button {
+            display: inline-block;
+            padding: 14px 24px;
+            background: var(--gold);
+            color: #111;
+            text-decoration: none;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.4;
+            border: none;
+            transition: background 0.2s ease;
+        }
+
+        .button:hover,
+        .button:focus-visible {
+            background: var(--gold-heading);
+        }
+
+        .button:focus-visible {
+            outline: 3px solid #fff;
+            outline-offset: 3px;
+        }
+
+        /* ONE-TIME SUPPORT */
+
+        .one-time-support {
+            padding: 36px 34px;
+            background: var(--panel);
+            border: 1px solid #48412d;
+            text-align: center;
+        }
+
+        .one-time-support p {
+            max-width: 690px;
+            margin: 0 auto 24px;
+            font-size: 17px;
+        }
+
+        .one-time-support .button {
+            min-width: 240px;
+        }
+
+        .support-note {
+            margin: 16px 0 0 !important;
+            font-size: 13px !important;
+            line-height: 1.5;
+        }
+
+        /* SECTION DIVIDER */
+
+        .section-divider {
+            height: 1px;
+            margin: 46px 0 38px;
+            background: #383838;
+            border: none;
+        }
+
+        /* MONTHLY SUPPORT */
+
+        .monthly-support {
+            text-align: center;
+        }
+
+        .monthly-intro {
+            max-width: 720px;
+            margin: 0 auto 28px;
+            font-size: 17px;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .support-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 26px 22px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .support-card h3 {
+            margin: 0 0 18px;
+            color: #fff;
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .support-price {
+            margin: 0 0 20px;
+            color: var(--gold);
+            font-family: "Oswald", Arial, sans-serif;
+            font-size: 38px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .support-price span {
+            color: var(--body-text);
+            font-family: "Roboto", Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        .support-card .button {
+            width: 100%;
+            margin-top: auto;
+        }
+
+        /* DISCLOSURE */
+
+        .disclosure {
+            margin-top: 46px;
+            padding-top: 26px;
+            border-top: 1px solid #383838;
+        }
+
+        .disclosure p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: var(--top-black);
+            color: #888;
+            text-align: center;
+            padding: 24px 20px;
+            font-size: 13px;
+        }
+
+        /* TABLET */
+
+        @media (max-width: 760px) {
+            .support-grid {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+                margin: 0 auto;
+            }
+
+            .support-card {
+                padding: 28px 24px;
+            }
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+            .hero-inner {
+                padding: 40px 22px 45px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .content-inner {
+                padding: 36px 20px 50px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            .one-time-support {
+                padding: 30px 20px;
+            }
+
+            .one-time-support p,
+            .monthly-intro {
+                font-size: 16px;
+            }
+
+            .button {
+                display: block;
+                width: 100%;
+                min-width: 0 !important;
+            }
+
+            .section-divider {
+                margin: 38px 0 32px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<div class="top-bar"></div>
-<header class="hero"><div class="hero-inner"><h1>Support Connective Gatherings</h1><p>Enjoyed an event? Help us continue bringing people together and creating opportunities for connection in our community.</p></div></header>
-<main><div class="content-inner">
-<section class="one-time" aria-labelledby="one-time-heading"><h2 id="one-time-heading">Leave a Tip or Show Your Support</h2><p>Whether you enjoyed a recent event or simply want to support our community, your contribution helps with event expenses and ongoing operations. Choose an amount that works for you.</p><a class="button" href="https://buy.stripe.com/3cI5kF54ddf60odfIg5AQ01">Choose Your Amount</a><p class="note">One-time contribution · You choose the amount · Secure checkout through Stripe</p></section>
-<section class="monthly" aria-labelledby="monthly-heading"><h2 id="monthly-heading">Monthly Community Support</h2><p>Want to support our community on an ongoing basis? Choose a monthly support level below.</p><div class="tiers">
-<div class="tier"><h3>Community Supporter</h3><div class="price">$5 <span>/ month</span></div><a class="button" href="https://buy.stripe.com/9B68wR7cl0sk4Et9jS5AQ00">Support Monthly</a></div>
-<div class="tier"><h3>Community Sustainer</h3><div class="price">$10 <span>/ month</span></div><a class="button" href="https://buy.stripe.com/bJefZj9kt7UMc6V67G5AQ03">Support Monthly</a></div>
-<div class="tier"><h3>Community Builder</h3><div class="price">$25 <span>/ month</span></div><a class="button" href="https://buy.stripe.com/5kQ9AV68hcb2c6VanW5AQ04">Support Monthly</a></div>
-</div></section>
-<p class="legal">Contributions are voluntary and are payments to Connective Gatherings LLC, a limited liability company. They are not represented as tax-deductible charitable donations. Payments and recurring subscriptions are processed by Stripe.</p>
-</div></main><footer>&copy; 2026 Connective Gatherings LLC</footer>
-</body></html>
+
+    <div class="top-bar"></div>
+
+    <!-- HERO -->
+
+    <header class="hero">
+        <div class="hero-inner">
+
+            <h1>Support Connective Gatherings</h1>
+
+            <p>
+                Great communities are built through shared
+                experiences and meaningful connections.
+                Your support helps Connective Gatherings
+                bring people together, create welcoming events,
+                and make lasting friendships possible.
+            </p>
+
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+
+    <main>
+        <div class="content-inner">
+
+            <!-- ONE-TIME SUPPORT -->
+
+            <section class="one-time-support">
+
+                <h2>Leave a Tip or Show Your Support</h2>
+
+                <p>
+                    Whether you enjoyed a recent event or simply
+                    want to support our community, your contribution
+                    helps with event expenses and ongoing operations.
+                    Choose an amount that works for you.
+                </p>
+
+                <a
+                    class="button"
+                    href="https://buy.stripe.com/3cI5kF54ddf60odfIg5AQ01"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Choose Your Amount
+                </a>
+
+                <p class="support-note">
+                    One-time contribution &middot;
+                    You choose the amount &middot;
+                    Secure checkout through Stripe
+                </p>
+
+            </section>
+
+            <hr class="section-divider">
+
+            <!-- MONTHLY SUPPORT -->
+
+            <section class="monthly-support">
+
+                <h2>Monthly Community Support</h2>
+
+                <p class="monthly-intro">
+                    Want to support our community on an ongoing basis?
+                    Choose a monthly support level below.
+                </p>
+
+                <div class="support-grid">
+
+                    <!-- COMMUNITY SUPPORTER -->
+
+                    <div class="support-card">
+
+                        <h3>Community Supporter</h3>
+
+                        <p class="support-price">
+                            $5 <span>/ month</span>
+                        </p>
+
+                        <a
+                            class="button"
+                            href="https://buy.stripe.com/9B68wR7cl0sk4Et9jS5AQ00"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Support Monthly
+                        </a>
+
+                    </div>
+
+                    <!-- COMMUNITY SUSTAINER -->
+
+                    <div class="support-card">
+
+                        <h3>Community Sustainer</h3>
+
+                        <p class="support-price">
+                            $10 <span>/ month</span>
+                        </p>
+
+                        <a
+                            class="button"
+                            href="https://buy.stripe.com/bJefZj9kt7UMc6V67G5AQ03"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Support Monthly
+                        </a>
+
+                    </div>
+
+                    <!-- COMMUNITY BUILDER -->
+
+                    <div class="support-card">
+
+                        <h3>Community Builder</h3>
+
+                        <p class="support-price">
+                            $25 <span>/ month</span>
+                        </p>
+
+                        <a
+                            class="button"
+                            href="https://buy.stripe.com/5kQ9AV68hcb2c6VanW5AQ04"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Support Monthly
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- DISCLOSURE -->
+
+            <section class="disclosure">
+                <p>
+                    Contributions are voluntary and are payments
+                    to Connective Gatherings LLC, a limited
+                    liability company. They are not represented
+                    as tax-deductible charitable donations.
+                    Payments and recurring subscriptions are
+                    processed securely by Stripe.
+                </p>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer>
+        &copy; 2026 Connective Gatherings LLC
+    </footer>
+
+</body>
+</html>
